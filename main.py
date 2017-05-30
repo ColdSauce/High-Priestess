@@ -20,6 +20,27 @@ class Interpreter():
     def interpret(self, ast):
         pass
     
+class Hell():
+    # Creates a new object.
+    def twist(self, objtype, objname):
+        pass
+
+    # Destroys an object.
+    def consume(self, objname):
+        pass
+
+    # Destroys all objects.
+    def empty(self):
+        pass
+
+    # Throws an error to the interpreter. The reference interpreter 
+    # will print a simple error message when this function is issued.
+    def breakError(self, errorText="There was an error lmao."):
+        pass
+
+    # Immediately ends the program. All active objects are destroyed as usual.
+    def apocalpyse(self):
+        pass
 
 def ameno():
     FILES_HELP = "List of files to interpret. They get interpreted sequentially"
