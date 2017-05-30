@@ -1,18 +1,18 @@
 import argparse
 
 class Interpreter():
-    def __init__(self, breakOnError=False, 
-            continueOnError=False, keepExtra=False, 
-            strict=False, stripCode=False, traceOff=False, 
-            traceOn=False, wimpMode=True):
-        self.breakOnError = breakOnError
-        self.continueOnError = continueOnError
-        self.keepExtra = keepExtra
+    def __init__(self, break_on_error=False, 
+            continue_on_error=False, keep_extra=False, 
+            strict=False, strip_code=False, trace_off=False, 
+            trace_on=False, wimp_mode=True):
+        self.break_on_error = break_on_error
+        self.continue_on_error = continue_on_error
+        self.keep_extra = keep_extra
         self.strict = strict
-        self.stripCode = stripCode
-        self.traceOff = traceOff
-        self.traceOn = traceOn
-        self.wimpMode = wimpMode
+        self.strip_code = strip_code
+        self.trace_off = trace_off
+        self.trace_on = trace_on
+        self.wimp_mode = wimp_mode
 
     def build_ast(self, file_name):
         return []
@@ -35,7 +35,7 @@ class Hell():
 
     # Throws an error to the interpreter. The reference interpreter 
     # will print a simple error message when this function is issued.
-    def breakError(self, errorText="There was an error lmao."):
+    def break_error(self, error_text="There was an error lmao."):
         pass
 
     # Immediately ends the program. All active objects are destroyed as usual.
@@ -92,14 +92,14 @@ def ameno():
     parser.add_argument("-continueonerror", 
             action="store_true", help=CONTINUEONERROR_HELP)
     args = parser.parse_args()
-    interpreter = Interpreter(wimpMode = args.wimpmode,
+    interpreter = Interpreter(wimp_mode = args.wimpmode,
             strict = args.strict,
-            traceOn = args.traceon,
-            traceOff = args.traceoff,
-            stripCode = args.stripcode,
-            keepExtra = args.keepextra,
-            breakOnError = args.breakonerror,
-            continueOnError = args.continueonerror)
+            trace_on = args.traceon,
+            trace_off = args.traceoff,
+            strip_code = args.stripcode,
+            keep_extra = args.keepextra,
+            break_on_error = args.breakonerror,
+            continue_on_error = args.continueonerror)
     for file_name in args.files:
         ast = interpreter.build_ast(file_name)
         interpreter.interpret(ast)
