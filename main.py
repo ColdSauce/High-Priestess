@@ -207,6 +207,7 @@ def ameno():
     parser.add_argument("-continueonerror", 
             action="store_true", help=CONTINUEONERROR_HELP)
     args = parser.parse_args()
+
     interpreter = Interpreter(wimp_mode = args.wimpmode,
             strict = args.strict,
             trace_on = args.traceon,
@@ -215,6 +216,7 @@ def ameno():
             keep_extra = args.keepextra,
             break_on_error = args.breakonerror,
             continue_on_error = args.continueonerror)
+
     for file_name in args.files:
         ast = interpreter.build_ast(file_name)
         interpreter.interpret(ast)
