@@ -32,6 +32,109 @@ class Interpreter():
     def interpret(self, ast):
         pass
     
+
+class Sign():
+    def __init__(self):
+        self.container = ""
+
+    def scrawl_variable(self, env, varname):
+        self.container = self.container + str(env[varname])
+
+    def scrawl_string(self, some_string):
+        self.container = self.container + some_string
+
+    def tear(self, count=1):
+        self.container = self.container[count:]
+
+    def tear_all(self):
+        self.container = ""
+
+    def observe(self, env, varname):
+        env[varname] = self.container[0]
+        return env
+
+    def steal(self, env, varname):
+        env = self.observe(env, varname)
+        self.container = self.container[1:]
+        return env
+
+    def read_and_delete(self, env):
+        env = self.read(env)
+        self.container = ""
+        return env
+
+    def read(self, env):
+        env["VOICELIST"] = [self.container] + env["VOICELIST"]
+        return env
+
+class Stalker():
+    def __init__(self):
+        self.initialized = False
+        self.buffer = ""
+        self.is_distant = True 
+
+    def stalk(self):
+        self.initialized = True
+
+    def get_next_char(self):
+        return _find_getch()()
+
+    def control_char(self, env, varname):
+        next_char = self.get_next_char()
+        env[varname] = next_char
+        return env
+
+    def control_int(self, env, varname):
+        final_number = ""
+        next_char = self.get_next_char()
+        while next_char != " " and next_char != "\0" and next_char != "\n":
+            final_number += next_char
+        env[varname] = int(final_number)
+        return env
+    
+    def action(self, env, varname):
+        character = chr(env[varname])
+
+        if self.is_distant:
+            self.buffer += character
+        else:
+            # the ',' makes it so that it doesn't
+            # print the \n character at the end
+            print(character,)
+
+    def action_numeric(self, env, varname):
+        character = str(env[varname])
+
+        if self.is_distant:
+            self.buffer += character
+        else:
+            # the ',' makes it so that it doesn't
+            # print the \n character at the end
+            print(character,)
+
+    def echo(self, env):
+        message = env["VOICELIST"][0]
+        env = env["VOICELIST"][1:]
+        if self.is_distant:
+            self.buffer += message
+        else:
+            # the ',' makes it so that it doesn't
+            # print the \n character at the end
+            print(message,)
+        return env
+    
+    def distant(self):
+        self.is_distant = True
+
+    def personal(self):
+        self.is_distant = False
+
+    def paracusia(self):
+        # the ',' makes it so that it doesn't
+        # print the \n character at the end
+        print(self.buffer,)
+        self.buffer = ""
+
 class Hell():
     # Creates a new object.
     def twist(self, objtype, objname):
