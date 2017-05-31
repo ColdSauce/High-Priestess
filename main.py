@@ -1,5 +1,6 @@
 import argparse
-from .util import _find_getch
+import sys
+from util import _find_getch
 
 class Interpreter():
     def __init__(self, break_on_error=False, 
