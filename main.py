@@ -15,6 +15,17 @@ class Interpreter():
         self.trace_on = trace_on
         self.wimp_mode = wimp_mode
 
+    def _tokenize(self, some_string):
+        pure_tokenized = some_string.replace(
+                "$", " $ ").replace("+", " + ").split()
+        return pure_tokenized
+
+    def _read_from_tokens(self, tokens):
+        if tokens[0] == "+":
+            return { "create hell" : tokens[1] }
+        else:
+            return { tokens[0] : tokens[2:] }
+
     def build_ast(self, file_name):
         return []
 
