@@ -135,27 +135,102 @@ class Stalker():
         print(self.buffer,)
         self.buffer = ""
 
+class Manipulator():
+
+    # Creates a new master variable.
+    # TODO: ^ This is such a bad comment. fix it
+    def manufacture_master(self, varname, disposition, size):
+        pass
+
+    # Creates a new servant variable with a given master. The master can   
+    # also be nonexistant, in which case the variable is 
+    # considered lost and is treated as a master variable 
+    # that cannot have servants.
+    def manufacture_servant(self, varname, disposition, size):
+        pass
+
+    # Forces a variable to kill itself, 
+    # freeing it (remember though that it will leave decay).
+    def suicide(self, varname):
+        pass
+
+    # Kills a variable. The same as the suicide function.
+    def kill(self, varname):
+        pass
+
+    # Cleans up all decay. This ensures that all 
+    # open variable spots are usable.
+    def void(self):
+        pass
+
+    # Kills all variables of a specified disposition. 
+    # Remember, this only affects the variables 
+    # directly under the manipulator's control and 
+    # leaves decay just like all other functions.
+    def genocide(self, disposition):
+        pass
+
+    # Kills all variables. Works like genocide.
+    def omnicide(self):
+        pass
+
+    # Sets a variable to a random value.
+    # Uses the Global Chaos Generator.
+    def chaos(self, varname):
+        pass
+
+    # Sets a variable to a given value.
+    # The value may be another variable 
+    # from the same manipulator or a number.
+    def set(self, varname, value):
+        pass
+    # Sets a variable to the sum of two values.
+    # Once again, values may be either variables or numbers.
+    def add(self, varname, val1, val2):
+        pass
+
+    # Sets a variable to the difference of two values.
+    def subtract(self, varname, val1, val2):
+        pass
+
+    # Sets a variable to the product of two values.
+    def mutliply(self, varname, val1, val2):
+        pass
+
+    # Sets a variable to the quotient of two values.
+    def divide(self, varname, val1, val2):
+        pass
+
+class YourGlass(Exception):
+    pass
+
 class Hell():
+
+    def __init__(self):
+        self.variables = { }
+        self.variable_types = { }
+        
     # Creates a new object.
     def twist(self, objtype, objname):
-        pass
+        self.variable_types[objname] = objtype
 
     # Destroys an object.
     def consume(self, objname):
-        pass
+        self.variables.pop(objname, None)
 
     # Destroys all objects.
     def empty(self):
-        pass
+        self.variables = { }
+        self.variable_types = { }
 
     # Throws an error to the interpreter. The reference interpreter 
     # will print a simple error message when this function is issued.
     def break_error(self, error_text="There was an error lmao."):
-        pass
+        raise YourGlass(error_text)
 
     # Immediately ends the program. All active objects are destroyed as usual.
     def apocalpyse(self):
-        pass
+        sys.exit()
 
 def ameno():
     FILES_HELP = "List of files to interpret. They get interpreted sequentially"
